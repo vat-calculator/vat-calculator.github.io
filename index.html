@@ -11,9 +11,8 @@
       margin: 0;
       padding: 0;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      height: 100vh;
       background-color: #f3f4f6; /* Soft background color */
     }
 
@@ -22,6 +21,7 @@
       width: 100%;
       max-width: 400px;
       padding: 20px;
+      margin-top: 30px;
       border-radius: 10px;
       background-color: #ffffff; /* White card */
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -94,6 +94,25 @@
     .result:empty {
       display: none; /* Hide result box when no result */
     }
+
+    /* Explanation section */
+    .explanation {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      font-size: 14px;
+      color: #555555;
+      line-height: 1.6;
+    }
+
+    .explanation h3 {
+      margin-bottom: 10px;
+      color: #333333;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -114,6 +133,25 @@
     <button onclick="calculateVAT()">Calculate</button>
 
     <div class="result" id="result"></div>
+  </div>
+
+  <div class="explanation">
+    <h3>How This VAT Calculator Works</h3>
+    <p>
+      This VAT calculator allows you to easily calculate the VAT amount based on the inputted value and VAT percentage. Here’s how you can use it:
+    </p>
+    <ul>
+      <li><strong>Add VAT:</strong> If you want to find the total price including VAT, select "Add VAT" and input the base amount along with the VAT percentage.</li>
+      <li><strong>Exclude VAT:</strong> If you want to find the price excluding VAT from a gross total, select "Exclude VAT" and provide the total amount and VAT percentage.</li>
+    </ul>
+    <p>
+      The calculator uses the following formulas:
+      <ul>
+        <li><strong>Add VAT:</strong> Total = Amount + (Amount × VAT Rate)</li>
+        <li><strong>Exclude VAT:</strong> Net = Amount ÷ (1 + VAT Rate)</li>
+      </ul>
+    </p>
+    <p>Simply input the values and click <strong>Calculate</strong> to get your result!</p>
   </div>
 
   <script>
