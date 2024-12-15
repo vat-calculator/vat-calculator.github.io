@@ -3,65 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VAT Calculator</title>
+  <title>VAT Calculator Online</title>
   <style>
-    /* Global styles */
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: #f3f4f6; /* Soft background color */
+      background-color: #f3f4f6;
+      color: #333;
+      line-height: 1.6;
     }
 
-    /* Calculator container */
-    .calculator {
-      width: 100%;
-      max-width: 400px;
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
       padding: 20px;
-      margin-top: 30px;
+      background-color: #ffffff;
       border-radius: 10px;
-      background-color: #ffffff; /* White card */
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
-    /* Header */
-    .calculator h2 {
+    h1 {
       text-align: center;
-      margin-bottom: 20px;
-      color: #333333;
+      color: #007bff;
     }
 
-    /* Form styles */
-    .calculator label {
-      font-size: 14px;
-      color: #555555;
-      margin-bottom: 5px;
+    form {
+      margin-top: 20px;
+    }
+
+    label {
       display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
     }
 
-    .calculator input,
-    .calculator select {
+    input {
       width: 100%;
       padding: 10px;
-      font-size: 16px;
       margin-bottom: 15px;
-      border: 1px solid #dddddd;
+      border: 1px solid #ddd;
       border-radius: 5px;
-      background-color: #fafafa;
+      font-size: 16px;
     }
 
-    .calculator input:focus,
-    .calculator select:focus {
+    input:focus {
       outline: none;
-      border-color: #007bff; /* Highlight color */
-      box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Soft glow */
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
     }
 
-    /* Button styles */
-    .calculator button {
+    button {
       width: 100%;
       padding: 12px;
       font-size: 16px;
@@ -74,28 +66,10 @@
       transition: background-color 0.3s ease;
     }
 
-    .calculator button:hover {
+    button:hover {
       background-color: #0056b3;
     }
-
-    /* Result area */
-    .result {
-      margin-top: 20px;
-      text-align: center;
-      font-size: 18px;
-      font-weight: bold;
-      color: #333333;
-      padding: 10px;
-      border: 1px solid #eeeeee;
-      background-color: #fafafa;
-      border-radius: 5px;
-    }
-
-    .result:empty {
-      display: none; /* Hide result box when no result */
-    }
-
-    /* Explanation section */
+     /* Explanation section */
     .explanation {
       max-width: 600px;
       margin: 20px auto;
@@ -113,30 +87,42 @@
       color: #333333;
       text-align: center;
     }
+
+    .footer {
+      margin-top: 30px;
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .footer a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <div class="calculator">
-    <h2>VAT Calculator</h2>
-    <label for="amount">Amount:</label>
-    <input type="number" id="amount" placeholder="Enter amount" required>
-    
-    <label for="vatRate">VAT Rate (%):</label>
-    <input type="number" id="vatRate" value="17" required>
+  <div class="container">
+    <h1>VAT Calculator Online</h1>
+    <p>Easily calculate VAT amounts with our simple VAT calculator. Add or exclude VAT effortlessly.</p>
 
-    <label for="operation">Operation:</label>
-    <select id="operation">
-      <option value="add">Add VAT</option>
-      <option value="exclude">Exclude VAT</option>
-    </select>
+    <form>
+      <label for="amount">Amount:</label>
+      <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
 
-    <button onclick="calculateVAT()">Calculate</button>
+      <label for="vat-rate">VAT Rate (%):</label>
+      <input type="number" id="vat-rate" name="vat-rate" placeholder="Enter VAT rate" required>
 
-    <div class="result" id="result"></div>
+      <button type="submit">Calculate</button>
+    </form>
   </div>
-
-  <div class="explanation">
-    <h3>How This VAT Calculator Works</h3>
+     <h3>How This VAT Calculator Works</h3>
     <p>
       This VAT calculator allows you to easily calculate the VAT amount based on the inputted value and VAT percentage. Here’s how you can use it:
     </p>
@@ -154,29 +140,13 @@
     <p>Simply input the values and click <strong>Calculate</strong> to get your result!</p>
   </div>
 
-  <script>
-    function calculateVAT() {
-      const amount = parseFloat(document.getElementById("amount").value);
-      const vatRate = parseFloat(document.getElementById("vatRate").value) / 100;
-      const operation = document.getElementById("operation").value;
-      const resultDiv = document.getElementById("result");
-
-      if (isNaN(amount) || isNaN(vatRate)) {
-        resultDiv.textContent = "Please enter valid numbers.";
-        return;
-      }
-
-      let result;
-      if (operation === "add") {
-        result = amount + (amount * vatRate);
-        resultDiv.textContent = `Total including VAT: ${result.toFixed(2)}`;
-      } else if (operation === "exclude") {
-        result = amount / (1 + vatRate);
-        resultDiv.textContent = `Net amount excluding VAT: ${result.toFixed(2)}`;
-      } else {
-        resultDiv.textContent = "Invalid operation.";
-      }
-    }
-  </script>
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2024 VAT Calculator Online. All rights reserved.</p>
+    <p>
+      <a href="contact-us.html">Contact Us</a> | 
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </p>
+  </div>
 </body>
 </html>
