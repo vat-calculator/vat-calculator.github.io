@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VAT Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .calculator {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    .calculator label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .calculator input,
+    .calculator select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+    }
+    .calculator button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .calculator button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      font-weight: bold;
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h2>VAT Calculator</h2>
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" placeholder="Enter amount" required>
+    
+    <label for="vatRate">VAT Rate (%):</label>
+    <input type="number" id="vatRate" value="17" required>
+
+    <label for="operation">Operation:</label>
+    <select id="operation">
+      <option value="add">Add VAT</option>
+      <option value="exclude">Exclude VAT</option>
+    </select>
+
+    <button onclick="calculateVAT()">Calculate</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculateVAT() {
+      const amount = parseFloat(document.getElementById("amount").value);
+      const vatRate = parseFloat(document.getElementById("vatRate").value) / 100;
+      const operation = document.getElementById("operation").value;
+      const resultDiv = document.getElementById("result");
+
+      if (isNaN(amount) || isNaN(vatRate)) {
+        resultDiv.textContent = "Please enter valid numbers.";
+        return;
+      }
+
+      let result;
+      if (operation === "add") {
+        result = amount + (amount * vatRate);
+        resultDiv.textContent = `Total including VAT: ${result.toFixed(2)}`;
+      } else if (operation === "exclude") {
+        result = amount / (1 + vatRate);
+        resultDiv.textContent = `Net amount excluding VAT: ${result.toFixed(2)}`;
+      } else {
+        resultDiv.textContent = "Invalid operation.";
+      }
+    }
+  </script>
+</body>
+</html>
