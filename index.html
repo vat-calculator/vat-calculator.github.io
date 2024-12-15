@@ -15,15 +15,7 @@
       line-height: 1.6;
     }
 
-    .container {
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 30px;
-      background-color: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-
+    
     h1 {
       text-align: center;
       font-size: 2.5rem;
@@ -136,22 +128,104 @@
         font-size: 1rem;
       }
     }
+     /* Calculator container */
+    .calculator {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 10px;
+      background-color: #ffffff; /* White card */
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    }
+
+    /* Header */
+    .calculator h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333333;
+    }
+
+    /* Form styles */
+    .calculator label {
+      font-size: 14px;
+      color: #555555;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .calculator input,
+    .calculator select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      border: 1px solid #dddddd;
+      border-radius: 5px;
+      background-color: #fafafa;
+    }
+
+    .calculator input:focus,
+    .calculator select:focus {
+      outline: none;
+      border-color: #007bff; /* Highlight color */
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Soft glow */
+    }
+
+    /* Button styles */
+    .calculator button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .calculator button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Result area */
+    .result {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333333;
+      padding: 10px;
+      border: 1px solid #eeeeee;
+      background-color: #fafafa;
+      border-radius: 5px;
+    }
+
+    .result:empty {
+      display: none; /* Hide result box when no result */
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>VAT Calculator Online</h1>
-    <p>Easily calculate VAT amounts with our simple VAT calculator. Add or exclude VAT effortlessly.</p>
+ <div class="calculator">
+    <h2>VAT Calculator</h2>
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" placeholder="Enter amount" required>
+    
+    <label for="vatRate">VAT Rate (%):</label>
+    <input type="number" id="vatRate" value="17" required>
 
-    <form>
-      <label for="amount">Amount:</label>
-      <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
+    <label for="operation">Operation:</label>
+    <select id="operation">
+      <option value="add">Add VAT</option>
+      <option value="exclude">Exclude VAT</option>
+    </select>
 
-      <label for="vat-rate">VAT Rate (%):</label>
-      <input type="number" id="vat-rate" name="vat-rate" placeholder="Enter VAT rate" required>
+    <button onclick="calculateVAT()">Calculate</button>
 
-      <button type="submit">Calculate</button>
-    </form>
+    <div class="result" id="result"></div>
   </div>
 
   <div class="explanation">
@@ -176,5 +250,30 @@
       <a href="privacy-policy.html">Privacy Policy</a>
     </p>
   </div>
+
+  <script>
+    function calculateVAT() {
+      const amount = parseFloat(document.getElementById("amount").value);
+      const vatRate = parseFloat(document.getElementById("vatRate").value) / 100;
+      const operation = document.getElementById("operation").value;
+      const resultDiv = document.getElementById("result");
+
+      if (isNaN(amount) || isNaN(vatRate)) {
+        resultDiv.textContent = "Please enter valid numbers.";
+        return;
+      }
+
+      let result;
+      if (operation === "add") {
+        result = amount + (amount * vatRate);
+        resultDiv.textContent = `Total including VAT: ${result.toFixed(2)}`;
+      } else if (operation === "exclude") {
+        result = amount / (1 + vatRate);
+        resultDiv.textContent = `Net amount excluding VAT: ${result.toFixed(2)}`;
+      } else {
+        resultDiv.textContent = "Invalid operation.";
+      }
+    }
+  </script>
 </body>
 </html>
