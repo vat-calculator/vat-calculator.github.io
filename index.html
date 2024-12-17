@@ -3,25 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="canonical" href="https://vat-calculator.github.io/" />
     <title>VAT Calculator (UK Only)</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Bootstrap CSS -->
+     <link rel="canonical" href="https://vat-calculator.github.io/" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .highlight {
-            color: #ffffff !important;
-            background-color: #198754 !important; /* Highlight color */
-            border-radius: 5px;
-            padding: 2px 5px;
+        /* Attractive Radio Button Styles */
+        .radio-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
         }
+
         .radio-label {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 48%;
-            text-align: center;
-            cursor: pointer;
+            padding: 15px 10px;
             font-weight: 600;
+            font-size: 16px;
+            text-align: center;
+            color: #333;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 5px;
         }
+
+        .radio-label input {
+            display: none; /* Hide default radio button */
+        }
+
+        .radio-label.active {
+            background-color: #198754; /* Green background */
+            color: #fff; /* White text */
+            border-color: #198754;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .radio-label:hover {
+            border-color: #198754; /* Green border on hover */
+        }
+
         .explanation {
             max-width: 600px;
             margin: 30px auto;
@@ -34,6 +58,7 @@
             color: #555555;
             line-height: 1.6;
         }
+
         .explanation h3 {
             margin-bottom: 10px;
             color: #333333;
@@ -45,7 +70,7 @@
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="https://vat-calculator.github.io">VAT Calculator (UK)</a>
+            <a class="navbar-brand" href="https://vat-calculator.github.io/">VAT Calculator (UK)</a>
         </div>
     </nav>
 
@@ -61,13 +86,13 @@
                     <label for="vat-rate" class="form-label">Enter VAT Rate (%):</label>
                     <input type="number" id="vat-rate" class="form-control mb-3" value="20" placeholder="Enter VAT rate">
 
-                    <!-- Radio Button for Add/Remove VAT -->
-                    <div class="mb-3 text-center">
+                    <!-- Attractive Radio Buttons -->
+                    <div class="radio-container">
                         <label class="radio-label" id="add-label">
-                            <input type="radio" name="operation" id="add-radio" value="add" hidden> Add VAT
+                            <input type="radio" name="operation" id="add-radio" value="add"> Add VAT
                         </label>
                         <label class="radio-label" id="remove-label">
-                            <input type="radio" name="operation" id="remove-radio" value="remove" hidden> Remove VAT
+                            <input type="radio" name="operation" id="remove-radio" value="remove"> Remove VAT
                         </label>
                     </div>
 
@@ -102,31 +127,27 @@
     <!-- Footer -->
     <footer class="bg-dark text-light text-center p-3 mt-5">
         <p>&copy; 2024 UK VAT Calculator. All rights reserved.</p>
-        <p>
-          <a href="contact-us.html">Contact Us</a> | 
-          <a href="privacy-policy.html">Privacy Policy</a>
-        </p>
     </footer>
 
     <!-- Scripts -->
     <script>
-        // Highlight selected radio option
+        // Radio Button Highlight Logic
         const addRadio = document.getElementById("add-radio");
         const removeRadio = document.getElementById("remove-radio");
         const addLabel = document.getElementById("add-label");
         const removeLabel = document.getElementById("remove-label");
 
         addRadio.addEventListener("change", () => {
-            addLabel.classList.add("highlight");
-            removeLabel.classList.remove("highlight");
+            addLabel.classList.add("active");
+            removeLabel.classList.remove("active");
         });
 
         removeRadio.addEventListener("change", () => {
-            removeLabel.classList.add("highlight");
-            addLabel.classList.remove("highlight");
+            removeLabel.classList.add("active");
+            addLabel.classList.remove("active");
         });
 
-        // Calculate VAT Function
+        // VAT Calculation Logic
         function calculateVAT() {
             const amount = parseFloat(document.getElementById("amount").value);
             const vatRate = parseFloat(document.getElementById("vat-rate").value);
