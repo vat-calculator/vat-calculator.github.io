@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VAT Calculator (UK Only)</title>
-     <link rel="canonical" href="https://vat-calculator.github.io/" />
+    <link rel="canonical" href="https://vat-calculator.github.io/" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Attractive Radio Button Styles */
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        /* Radio Buttons Styling */
         .radio-container {
             display: flex;
             justify-content: center;
@@ -32,21 +43,36 @@
         }
 
         .radio-label input {
-            display: none; /* Hide default radio button */
+            display: none;
         }
 
         .radio-label.active {
-            background-color: #198754; /* Green background */
-            color: #fff; /* White text */
+            background-color: #198754; /* Green for Add VAT */
+            color: #fff;
             border-color: #198754;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .radio-label:hover {
-            border-color: #198754; /* Green border on hover */
+        .radio-label.remove-active {
+            background-color: #dc3545; /* Red for Remove VAT */
+            color: #fff;
+            border-color: #dc3545;
         }
 
+        #result {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Explanation Box Styling */
         .explanation {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-top: 10px;
+        }
+         .explan {
             max-width: 600px;
             margin: 30px auto;
             padding: 20px;
@@ -59,7 +85,7 @@
             line-height: 1.6;
         }
 
-        .explanation h3 {
+        .explan h3 {
             margin-bottom: 10px;
             color: #333333;
             text-align: center;
@@ -76,17 +102,17 @@
 
     <!-- Main Content -->
     <div class="container mt-5">
-        <h1 class="text-center mb-4">UK VAT Calculator</h1>
+        <h1>UK VAT Calculator</h1>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="calculator p-4 shadow rounded">
-                    <label for="amount" class="form-label">Enter Amount:</label>
+                <div class="calculator p-4 shadow rounded bg-white">
+                    <label for="amount" class="form-label">Enter Amount (£):</label>
                     <input type="number" id="amount" class="form-control mb-3" placeholder="Enter amount">
 
                     <label for="vat-rate" class="form-label">Enter VAT Rate (%):</label>
                     <input type="number" id="vat-rate" class="form-control mb-3" value="20" placeholder="Enter VAT rate">
 
-                    <!-- Attractive Radio Buttons -->
+                    <!-- Radio Buttons -->
                     <div class="radio-container">
                         <label class="radio-label" id="add-label">
                             <input type="radio" name="operation" id="add-radio" value="add"> Add VAT
@@ -96,16 +122,15 @@
                         </label>
                     </div>
 
-                    <button class="btn btn-primary w-100" onclick="calculateVAT()">Calculate</button>
-
-                    <h3 class="mt-4 text-center" id="result">Result: €0.00</h3>
+                    <!-- Result -->
+                    <h3 id="result">Result: £0.00</h3>
+                    <div id="explanation" class="explanation"></div>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Explanation Box -->
-    <div class="explanation">
+    <div class="explan">
         <h3>How This VAT Calculator Works</h3>
         <p>
             This VAT calculator allows you to easily calculate the VAT amount based on the inputted value and VAT percentage. Here’s how you can use it:
@@ -123,44 +148,37 @@
         </p>
         <p>Simply input the values and click "Calculate" to get your result!</p>
     </div>
-
     <!-- Footer -->
     <footer class="bg-dark text-light text-center p-3 mt-5">
         <p>&copy; 2024 UK VAT Calculator. All rights reserved.</p>
-        <a href="contact-us.html">Contact Us</a> | 
-      <a href="privacy-policy.html">Privacy Policy</a>
-    </p>
+        <a href="contact-us.html" class="text-light">Contact Us</a> | 
+        <a href="privacy-policy.html" class="text-light">Privacy Policy</a>
     </footer>
 
     <!-- Scripts -->
     <script>
-        // Radio Button Highlight Logic
         const addRadio = document.getElementById("add-radio");
         const removeRadio = document.getElementById("remove-radio");
         const addLabel = document.getElementById("add-label");
         const removeLabel = document.getElementById("remove-label");
+        const amountInput = document.getElementById("amount");
+        const vatRateInput = document.getElementById("vat-rate");
+        const resultElement = document.getElementById("result");
+        const explanationElement = document.getElementById("explanation");
 
-        addRadio.addEventListener("change", () => {
-            addLabel.classList.add("active");
-            removeLabel.classList.remove("active");
-        });
+        // Listen for changes in radio button selection and input fields
+        addRadio.addEventListener("change", calculateVAT);
+        removeRadio.addEventListener("change", calculateVAT);
+        amountInput.addEventListener("input", calculateVAT);
+        vatRateInput.addEventListener("input", calculateVAT);
 
-        removeRadio.addEventListener("change", () => {
-            removeLabel.classList.add("active");
-            addLabel.classList.remove("active");
-        });
-
-        // VAT Calculation Logic
         function calculateVAT() {
-            const amount = parseFloat(document.getElementById("amount").value);
-            const vatRate = parseFloat(document.getElementById("vat-rate").value);
+            const amount = parseFloat(amountInput.value);
+            const vatRate = parseFloat(vatRateInput.value);
 
-            if (isNaN(amount) || amount <= 0) {
-                alert("Please enter a valid amount.");
-                return;
-            }
-            if (isNaN(vatRate) || vatRate < 0) {
-                alert("Please enter a valid VAT rate.");
+            if (isNaN(amount) || amount <= 0 || isNaN(vatRate) || vatRate < 0) {
+                resultElement.textContent = "Result: £0.00";
+                explanationElement.textContent = "";
                 return;
             }
 
@@ -169,13 +187,18 @@
             if (addRadio.checked) {
                 const vat = (amount * vatRate) / 100;
                 result = amount + vat;
-                document.getElementById("result").textContent = `Result: €${result.toFixed(2)} (VAT Added)`;
+                resultElement.textContent = `Result: £${result.toFixed(2)} (VAT Added)`;
+                resultElement.style.color = "#198754";
+                explanationElement.textContent = "The total price includes the added VAT percentage.";
+                addLabel.classList.add("active");
+                removeLabel.classList.remove("remove-active");
             } else if (removeRadio.checked) {
-                const originalAmount = amount / (1 + vatRate / 100);
-                result = originalAmount;
-                document.getElementById("result").textContent = `Result: €${result.toFixed(2)} (VAT Removed)`;
-            } else {
-                alert("Please select Add VAT or Remove VAT before calculating.");
+                result = amount / (1 + vatRate / 100);
+                resultElement.textContent = `Result: £${result.toFixed(2)} (VAT Removed)`;
+                resultElement.style.color = "#dc3545";
+                explanationElement.textContent = "The result shows the price excluding the VAT amount.";
+                removeLabel.classList.add("remove-active");
+                addLabel.classList.remove("active");
             }
         }
     </script>
