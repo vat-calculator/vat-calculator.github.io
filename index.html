@@ -108,6 +108,7 @@
             padding: 15px;
             border-radius: 10px;
             color: #fff; /* White color for the result */
+            display: none; /* Hide initially */
         }
 
         .error {
@@ -182,7 +183,7 @@
                     <!-- Radio Buttons -->
                     <div class="radio-container">
                         <label class="radio-label" id="add-label">
-                            <input type="radio" name="operation" id="add-radio" value="add" checked> Add VAT
+                            <input type="radio" name="operation" id="add-radio" value="add"> Add VAT
                         </label>
                         <label class="radio-label" id="remove-label">
                             <input type="radio" name="operation" id="remove-radio" value="remove"> Remove VAT
@@ -288,34 +289,37 @@
 
             // If VAT rate is empty or zero, set default rate to 20% and add VAT by default
             if (isNaN(vatRate) || vatRate <= 0) {
-                vatRate = 20; // Default VAT rate is 20%
-                vatRateInput.value = vatRate; // Set default value in input
-                addRadio.checked = true; // Set 'Add VAT' radio button checked
+                vatRate = 20;
             }
 
-            // If amount is not entered or is zero, set it to £10 and show error
-            if (isNaN(amount) || amount <= 0) {
-                amountInput.value = 10;
+            // If amount is zero or invalid, show an error
+            if (amount <= 0) {
                 showError("Please enter a valid amount greater than 0.");
-                return; // Stop further calculation
+                resultElement.style.display = "none";
+                explanationElement.textContent = "";
+                return;
             }
 
             // Clear any previous errors
             errorMessage.style.display = "none";
 
-            // Perform VAT calculation
-            let result;
+            // Hide result initially
+            resultElement.style.display = "none";
+
+            // Perform VAT calculation only when the user selects an option
             if (addRadio.checked) {
                 const vat = (amount * vatRate) / 100;
-                result = amount + vat;
+                const result = amount + vat;
                 resultElement.textContent = `Result: £${result.toFixed(2)} (VAT Added)`;
+                resultElement.style.display = "block";
                 resultElement.style.color = "#198754"; // Green for Add VAT
                 explanationElement.textContent = "The price including VAT is calculated.";
                 addLabel.classList.add("active");
                 removeLabel.classList.remove("remove-active");
             } else if (removeRadio.checked) {
-                result = amount / (1 + vatRate / 100);
+                const result = amount / (1 + vatRate / 100);
                 resultElement.textContent = `Result: £${result.toFixed(2)} (VAT Removed)`;
+                resultElement.style.display = "block";
                 resultElement.style.color = "#dc3545"; // Red for Remove VAT
                 explanationElement.textContent = "The price excluding VAT is calculated.";
                 removeLabel.classList.add("remove-active");
