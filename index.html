@@ -174,7 +174,7 @@
             <div class="col-md-6">
                 <div class="calculator p-4 shadow rounded bg-white">
                     <label for="amount" class="form-label">Enter Amount (£):</label>
-                    <input type="number" id="amount" class="form-control mb-3" placeholder="Enter amount">
+                    <input type="number" id="amount" class="form-control mb-3" placeholder="Enter amount" value="10">
 
                     <label for="vat-rate" class="form-label">Enter VAT Rate (%):</label>
                     <input type="number" id="vat-rate" class="form-control mb-3" value="20" placeholder="Enter VAT rate">
@@ -182,7 +182,7 @@
                     <!-- Radio Buttons -->
                     <div class="radio-container">
                         <label class="radio-label" id="add-label">
-                            <input type="radio" name="operation" id="add-radio" value="add"> Add VAT
+                            <input type="radio" name="operation" id="add-radio" value="add" checked> Add VAT
                         </label>
                         <label class="radio-label" id="remove-label">
                             <input type="radio" name="operation" id="remove-radio" value="remove"> Remove VAT
@@ -190,7 +190,7 @@
                     </div>
 
                     <!-- Result -->
-                    <h3 id="result">Result: £0.00</h3>
+                    <h3 id="result">Result: £10.00</h3>
                     <div id="explanation" class="explanation"></div>
                     <div id="error-message" class="error" style="display: none;"></div>
                 </div>
@@ -293,18 +293,17 @@
                 addRadio.checked = true; // Set 'Add VAT' radio button checked
             }
 
-            // If amount is not entered, show error message
+            // If amount is not entered or is zero, set it to £10 and show error
             if (isNaN(amount) || amount <= 0) {
-                resultElement.textContent = "Result: £0.00";
-                explanationElement.textContent = "";
-                errorMessage.style.display = "block";
-                errorMessage.textContent = "Please enter a valid amount first.";
-                errorModal.show(); // Show the modal popup
-                return;
-            } else {
-                errorMessage.style.display = "none"; // Hide error if amount is valid
+                amountInput.value = 10;
+                showError("Please enter a valid amount greater than 0.");
+                return; // Stop further calculation
             }
 
+            // Clear any previous errors
+            errorMessage.style.display = "none";
+
+            // Perform VAT calculation
             let result;
             if (addRadio.checked) {
                 const vat = (amount * vatRate) / 100;
@@ -322,6 +321,13 @@
                 removeLabel.classList.add("remove-active");
                 addLabel.classList.remove("active");
             }
+        }
+
+        // Show error and trigger modal
+        function showError(message) {
+            errorMessage.style.display = "block";
+            errorMessage.textContent = message;
+            errorModal.show();
         }
 
         // Initial calculation if input exists
