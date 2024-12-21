@@ -1,251 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAT Calculator (UK Only)</title>
+    <title>VAT Calculator UK | Fast, Easy & Accurate VAT Calculations Online</title>
     <link rel="canonical" href="https://vat-calculator.github.io/" />
+    <meta name="description" content="VAT Calculator - Calculate VAT free for the UK. Add or remove VAT from any amount with 100% accuracy. Perfect for businesses and individuals. Calculate Now">
+    <meta name="robots" content="index, follow">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* General Styling */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to right, #2C3E50, #4CA1AF); /* Gradient Background */
-            color: #fff;
-            padding-top: 50px;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
         }
 
-        h1 {
-            color: #fff;
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 30px;
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* Header Navbar */
-        .navbar {
-            background-color: #1a252f;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        .row {
+            display: flex;
+            flex-wrap: wrap;
         }
 
-        .navbar-brand {
+        .left-side {
+            background-color: #7b7474;
+            background-size: cover;
+            background-position: center;
+            flex: 1;
+            min-width: 300px;
+            color: rgb(255, 255, 255);
+            padding: 20px;
+        }
+
+        .left-side h2 {
             font-size: 24px;
-            font-weight: bold;
-        }
-
-        /* Card Container */
-        .calculator {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            margin-top: 40px;
-        }
-
-        .form-label {
-            font-weight: bold;
-        }
-
-        /* Input Fields */
-        .form-control {
-            border-radius: 8px;
-            background-color: #2C3E50;
-            border: 1px solid #34495E;
-            color: #fff;
-        }
-
-        .form-control:focus {
-            border-color: #4CA1AF;
-            background-color: #34495E;
-        }
-
-        /* Radio Buttons Styling */
-        .radio-container {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        .radio-label {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 48%;
-            padding: 15px 10px;
-            font-weight: 600;
-            font-size: 16px;
-            text-align: center;
-            color: #333;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 0 5px;
-        }
-
-        .radio-label input {
-            display: none;
-        }
-
-        .radio-label.active {
-            background-color: #198754; /* Green for Add VAT */
-            color: #fff;
-            border-color: #198754;
-        }
-
-        .radio-label.remove-active {
-            background-color: #dc3545; /* Red for Remove VAT */
-            color: #fff;
-            border-color: #dc3545;
-        }
-
-        /* Result Styling */
-        #result {
-            font-size: 22px;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 10px;
-            color: #fff; /* White color for the result */
-            display: none; /* Hide initially */
-        }
-
-        .error {
-            color: #000; /* Black color for error message */
-            background-color: #f8d7da;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 16px;
-            text-align: center;
-        }
-
-        /* Explanation Box Styling */
-        .explanation {
-            text-align: center;
-            font-size: 14px;
-            color: #fff;
-            margin-top: 10px;
-        }
-
-        .explan {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            font-size: 14px;
-            color: #fff;
-            line-height: 1.6;
-        }
-
-        .explan h3 {
             margin-bottom: 20px;
-            color: #fff;
+        }
+
+        .right-side {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            background-color: #f1f1f1;
+        }
+
+        .right-side h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        #result {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .btn {
+            width: 100%;
+        }
+
+        .navbar {
+            margin-bottom: 40px;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: white;
             text-align: center;
+            padding: 15px;
+            margin-top: 50px;
         }
-
-        /* Modal Styling */
-        .modal-content {
-            background-color: #f8d7da;
-            color: #000;
-        }
-
-        .modal-footer button {
-            color: #fff;
-            background-color: #dc3545;
-        }
-
     </style>
 </head>
+
 <body>
     <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1a252f; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);">
         <div class="container">
-            <a class="navbar-brand" href="https://vat-calculator.github.io/">VAT Calculator (UK)</a>
+            <a class="navbar-brand" href="https://vat-calculator.github.io/" style="font-size: 28px; font-weight: bold; color: black;">VAT Calculator (UK)</a>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="container mt-5">
-        <h1>UK VAT Calculator</h1>
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="calculator p-4 shadow rounded bg-white">
-                    <label for="amount" class="form-label">Enter Amount (£):</label>
-                    <input type="number" id="amount" class="form-control mb-3" placeholder="Enter amount" value="10">
+    <div class="container">
+        <div class="row">
+            <!-- Left Side -->
+            <div class="left-side">
+                <h2>Welcome To VAT Calculator (UK)</h2>
+                <p>This site was created to help users calculate VAT accurately, whether adding it to net amounts or subtracting it from gross amounts. Unlike other tools, ours lets you adjust the VAT rate easily to suit your needs.</p>
+                <p>The UK’s standard VAT rate is currently 20%, a change made on 4th January 2011 from 17.5%. Previously, the rate dropped to 15% on 1st December 2008 before rising again to 17.5% on 20th January 2010. Our calculator is designed to simplify these calculations for both individuals and businesses.</p>
+            </div>
 
-                    <label for="vat-rate" class="form-label">Enter VAT Rate (%):</label>
-                    <input type="number" id="vat-rate" class="form-control mb-3" value="20" placeholder="Enter VAT rate">
-
-                    <!-- Radio Buttons -->
-                    <div class="radio-container">
-                        <label class="radio-label" id="add-label">
-                            <input type="radio" name="operation" id="add-radio" value="add"> Add VAT
-                        </label>
-                        <label class="radio-label" id="remove-label">
-                            <input type="radio" name="operation" id="remove-radio" value="remove"> Remove VAT
-                        </label>
+            <!-- Right Side -->
+            <div class="right-side">
+                <h3>VAT Calculator</h3>
+                <form>
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Enter Amount (£):</label>
+                        <input type="number" id="amount" class="form-control" placeholder="Enter amount" value="2">
                     </div>
 
-                    <!-- Result -->
-                    <h3 id="result">Result: £10.00</h3>
-                    <div id="explanation" class="explanation"></div>
-                    <div id="error-message" class="error" style="display: none;"></div>
-                </div>
+                    <div class="mb-3">
+                        <label for="vat-rate" class="form-label">Enter VAT Rate (%):</label>
+                        <input type="number" id="vat-rate" class="form-control" value="20">
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-success" id="add-vat">Add VAT</button>
+                        <button type="button" class="btn btn-danger" id="remove-vat">Remove VAT</button>
+                    </div>
+                </form>
+                <div id="result">Result: £2.00</div>
             </div>
         </div>
     </div>
 
-    <!-- Explanation Box -->
-    <div class="explan">
-        <h3>What is a VAT Calculator?</h3>
-        <p>A VAT Calculator is an essential tool that simplifies the process of calculating Value Added Tax (VAT) for businesses and individuals. Whether you need to add VAT to a net price or exclude VAT from a gross total, this tool ensures precise and quick results.</p>
-        <p>The VAT Calculator on vat-calculator.github.io is a free, reliable, and user-friendly solution designed to help you with all VAT-related calculations.</p>
-
-        <h3>How This VAT Calculator Works</h3>
-        <ul>
-            <li><strong>Add VAT:</strong> Select the "Add VAT" option. Enter the base amount and the VAT percentage. Formula: Total = Amount + (Amount × VAT Rate)</li>
-            <li><strong>Exclude VAT:</strong> Choose the "Exclude VAT" option. Input the gross amount and VAT percentage. Formula: Net = Amount ÷ (1 + VAT Rate)</li>
-        </ul>
-
-        <h3>Why Use the VAT Calculator?</h3>
-        <ul>
-            <li><strong>Accurate Calculations:</strong> Ensures precise results every time.</li>
-            <li><strong>Simple to Use:</strong> The interface is intuitive and beginner-friendly.</li>
-            <li><strong>Completely Free:</strong> Perform unlimited calculations without any charges.</li>
-            <li><strong>Accessible Anywhere:</strong> Use it on any device with internet access.</li>
-        </ul>
-
-        <h3>Benefits of Using the VAT Calculator</h3>
-        <ul>
-            <li><strong>Time-Efficient:</strong> Speeds up complex tax calculations.</li>
-            <li><strong>Reduces Errors:</strong> Eliminates mistakes in VAT computations.</li>
-            <li><strong>Customizable for Any Region:</strong> Adjust to specific VAT percentages.</li>
-            <li><strong>Convenient Access:</strong> Use it anytime, anywhere online.</li>
-        </ul>
-
-        <h3>Who Can Benefit from This Tool?</h3>
-        <ul>
-            <li><strong>Business Owners:</strong> For accurate invoicing and tax reporting.</li>
-            <li><strong>Freelancers:</strong> To calculate VAT for their services.</li>
-            <li><strong>Consumers:</strong> To understand VAT charges on purchases.</li>
-        </ul>
-
-        <h3>Try the VAT Calculator Today</h3>
-        <p>Simplify your VAT calculations with vat-calculator.github.io. Whether you’re calculating VAT for business purposes or personal use, this tool ensures efficiency and accuracy. Start using it today for all your VAT needs!</p>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-light text-center p-3 mt-5">
-        <p>&copy; 2024 UK VAT Calculator. All rights reserved.</p>
-        <a href="contact-us.html" class="text-light">Contact Us</a> | 
-        <a href="privacy-policy.html" class="text-light">Privacy Policy</a>
-    </footer>
-
-    <!-- Error Modal -->
+    <!-- Modal for Error -->
     <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -263,79 +142,56 @@
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Footer -->
+    <footer class="bg-black text-light text-center p-3 mt-5">
+        <p>&copy; 2024 UK VAT Calculator. All rights reserved.</p>
+        <a href="contact-us.html" class="text-light">Contact Us</a> | 
+        <a href="privacy-policy.html" class="text-light">Privacy Policy</a>
+    </footer>
+
+    <!-- Bootstrap JS and Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        const addRadio = document.getElementById("add-radio");
-        const removeRadio = document.getElementById("remove-radio");
-        const addLabel = document.getElementById("add-label");
-        const removeLabel = document.getElementById("remove-label");
-        const amountInput = document.getElementById("amount");
-        const vatRateInput = document.getElementById("vat-rate");
-        const resultElement = document.getElementById("result");
-        const explanationElement = document.getElementById("explanation");
-        const errorMessage = document.getElementById("error-message");
+        const amountInput = document.getElementById('amount');
+        const vatRateInput = document.getElementById('vat-rate');
+        const addVatButton = document.getElementById('add-vat');
+        const removeVatButton = document.getElementById('remove-vat');
+        const resultDiv = document.getElementById('result');
         const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
 
-        // Listen for changes in radio button selection and input fields
-        addRadio.addEventListener("change", calculateVAT);
-        removeRadio.addEventListener("change", calculateVAT);
-        amountInput.addEventListener("input", calculateVAT);
-        vatRateInput.addEventListener("input", calculateVAT);
+        // Default amount set to 2
+        amountInput.value = 2;
 
-        function calculateVAT() {
-            const amount = parseFloat(amountInput.value);
-            let vatRate = parseFloat(vatRateInput.value);
+        addVatButton.addEventListener('click', () => {
+            let amount = parseFloat(amountInput.value);
+            const vatRate = parseFloat(vatRateInput.value);
 
-            // If VAT rate is empty or zero, set default rate to 20% and add VAT by default
-            if (isNaN(vatRate) || vatRate <= 0) {
-                vatRate = 20;
-            }
-
-            // If amount is zero or invalid, show an error
-            if (amount <= 0) {
-                showError("Please enter a valid amount greater than 0.");
-                resultElement.style.display = "none";
-                explanationElement.textContent = "";
+            if (!amount || amount <= 0 || !vatRate || vatRate <= 0) {
+                errorModal.show();
+                resultDiv.textContent = 'Please enter valid inputs.';
                 return;
             }
 
-            // Clear any previous errors
-            errorMessage.style.display = "none";
+            const vat = (amount * vatRate) / 100;
+            const total = amount + vat;
+            resultDiv.textContent = `Result: £${total.toFixed(2)} (including £${vat.toFixed(2)} VAT)`;
+        });
 
-            // Hide result initially
-            resultElement.style.display = "none";
+        removeVatButton.addEventListener('click', () => {
+            let amount = parseFloat(amountInput.value);
+            const vatRate = parseFloat(vatRateInput.value);
 
-            // Perform VAT calculation only when the user selects an option
-            if (addRadio.checked) {
-                const vat = (amount * vatRate) / 100;
-                const result = amount + vat;
-                resultElement.textContent = `Result: £${result.toFixed(2)} (VAT Added)`;
-                resultElement.style.display = "block";
-                resultElement.style.color = "#198754"; // Green for Add VAT
-                explanationElement.textContent = "The price including VAT is calculated.";
-                addLabel.classList.add("active");
-                removeLabel.classList.remove("remove-active");
-            } else if (removeRadio.checked) {
-                const result = amount / (1 + vatRate / 100);
-                resultElement.textContent = `Result: £${result.toFixed(2)} (VAT Removed)`;
-                resultElement.style.display = "block";
-                resultElement.style.color = "#dc3545"; // Red for Remove VAT
-                explanationElement.textContent = "The price excluding VAT is calculated.";
-                removeLabel.classList.add("remove-active");
-                addLabel.classList.remove("active");
+            if (!amount || amount <= 0 || !vatRate || vatRate <= 0) {
+                errorModal.show();
+                resultDiv.textContent = 'Please enter valid inputs.';
+                return;
             }
-        }
 
-        // Show error and trigger modal
-        function showError(message) {
-            errorMessage.style.display = "block";
-            errorMessage.textContent = message;
-            errorModal.show();
-        }
-
-        // Initial calculation if input exists
-        window.onload = calculateVAT;
+            const originalAmount = amount / (1 + vatRate / 100);
+            const vat = amount - originalAmount;
+            resultDiv.textContent = `Result: £${originalAmount.toFixed(2)} (excluding £${vat.toFixed(2)} VAT)`;
+        });
     </script>
 </body>
+
 </html>
