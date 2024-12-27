@@ -19,176 +19,312 @@
 
   gtag('config', 'G-WY8Q66XGGS');
 </script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
-        }
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
 
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background-color: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-        }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+    }
 
-        .left-side {
-            background-color: #ffffff;
-            background-size: cover;
-            color: black;
-            background-position: center;
-            flex: 1;
-            min-width: 300px;
-            color: rgb(255, 255, 255);
-            padding: 20px;
-        }
+    .left-side {
+      background-color: #ffffff;
+      background-size: cover;
+      color: black;
+      background-position: center;
+      flex: 1;
+      min-width: 300px;
+      color: rgb(255, 255, 255);
+      padding: 20px;
+    }
 
-        .left-side h2 {
-            color: black;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+    .left-side h2 {
+      color: black;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
 
-        .right-side {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
-            background-color: #f1f1f1;
-        }
+    .right-side {
+      flex: 1;
+      min-width: 300px;
+      padding: 20px;
+      background-color: #f1f1f1;
+    }
 
-        .right-side h3 {
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
+    .right-side h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
 
-        #result {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin-top: 20px;
-        }
+    #result {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      margin-top: 20px;
+    }
 
-        .btn {
-            width: 100%;
-        }
+    .btn {
+      width: 100%;
+    }
 
-       
-        .nav-item {
-            background-color: #cacaca;
-            justify-content: center;
-            align-items: center;
-            list-style: none;
-            display: flex;
-        }
-        .nav-link{
-            padding-left: 25px;
-            font-size: large;
-            color: #2b382a;
-        }
-        .nav-link:hover{
-            text-decoration: underline;
-            color: #000000;
-        }
-        .footer {
-            background-color: #343a40;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 50px;
-        }
-    </style>
+
+    .nav-item {
+      background-color: #cacaca;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+      display: flex;
+    }
+
+    .nav-link {
+      padding-left: 25px;
+      font-size: large;
+      color: #2b382a;
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+      color: #000000;
+    }
+
+    .footer {
+      background-color: #343a40;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 50px;
+    }
+    .contain {
+      max-width: 1150px;
+      margin: 40px auto;
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .content-section {
+      padding: 40px 20px;
+      background-color: #f1f1f1;
+      border-radius: 8px;
+      margin-top: 40px;
+    }
+
+    .content-section h1,
+    .content-section h2 {
+      color: #333;
+    }
+
+    .content-section ul {
+      list-style-type: disc;
+      margin-left: 20px;
+    }
+
+    .content-section ol {
+      margin-left: 20px;
+    }
+  </style>
 </head>
 
 <body>
-    <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1a252f; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);">
-        <div class="container">
-            <a class="navbar-brand" href="https://vat-calculator.github.io/" style="font-size: 28px; font-weight: bold; color: black;">VAT Calculator (UK)</a>
-        </div>
-    </nav>
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-none d-md-block">
-        <li class="nav-item">
-            <a class="nav-link" href="https://vat-calculator.github.io/">VAT Calculator</a> 
-            <a class="nav-link" style="color: #000000;">|</a> 
-            <a class="nav-link" href="https://vat-calculator.github.io/what-is-vat/index.html"> What is VAT? </a> 
-            <a class="nav-link" style="color: #000000;">|</a> 
-            <a class="nav-link" href="https://vat-calculator.github.io/current-vat-rate/index.html"> Current VAT Rate </a> 
-            <a class="nav-link" style="color: #000000;">|</a> 
-            <a class="nav-link" href="https://vat-calculator.github.io/the-flat-rate-vat-scheme/index.html"> The Flat Rate VAT Scheme</a> 
-        </li>
-    </ul>
-    
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg navbar-dark"
+    style="background-color: #1a252f; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);">
     <div class="container">
-        <div class="row">
-            <!-- Left Side -->
-            <div class="left-side" style="color:black;">
-                <h2>Welcome To VAT Calculator (UK)</h2>
-                <p>This site was created to help users calculate VAT accurately, whether adding it to net amounts or subtracting it from gross amounts. Unlike other tools, ours lets you adjust the VAT rate easily to suit your needs.</p>
-                <p>The UK’s standard VAT rate is currently 20%, a change made on 4th January 2011 from 17.5%. Previously, the rate dropped to 15% on 1st December 2008 before rising again to 17.5% on 20th January 2010. Our calculator is designed to simplify these calculations for both individuals and businesses.</p>
-            </div>
-
-            <!-- Right Side -->
-            <div class="right-side">
-                <h3>VAT Calculator</h3>
-                <form>
-                    <div class="mb-3">
-                        <label for="amount" class="form-label">Enter Amount (£):</label>
-                        <input type="number" id="amount" class="form-control" placeholder="Enter amount" value="2">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="vat-rate" class="form-label">Enter VAT Rate (%):</label>
-                        <input type="number" id="vat-rate" class="form-control" value="20">
-                    </div>
-
-                    <div class="d-grid gap-2">
-                        <button type="button" class="btn btn-success" id="add-vat">Add VAT</button>
-                        <button type="button" class="btn btn-danger" id="remove-vat">Remove VAT</button>
-                    </div>
-                </form>
-                <div id="result">Result: £2.00</div>
-            </div>
-        </div>
+      <a class="navbar-brand" href="https://vat-calculator.github.io/"
+        style="font-size: 28px; font-weight: bold; color: black;">VAT Calculator (UK)</a>
     </div>
+  </nav>
+  <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-none d-md-block">
+    <li class="nav-item">
+      <a class="nav-link" href="https://vat-calculator.github.io/">VAT Calculator</a>
+      <a class="nav-link" style="color: #000000;">|</a>
+      <a class="nav-link" href="https://vat-calculator.github.io/what-is-vat/index.html"> What is VAT? </a>
+      <a class="nav-link" style="color: #000000;">|</a>
+      <a class="nav-link" href="https://vat-calculator.github.io/current-vat-rate/index.html"> Current VAT Rate </a>
+      <a class="nav-link" style="color: #000000;">|</a>
+      <a class="nav-link" href="https://vat-calculator.github.io/the-flat-rate-vat-scheme/index.html"> The Flat Rate VAT
+        Scheme</a>
+    </li>
+  </ul>
 
-    <!-- Modal for Error -->
-    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="errorModalLabel">Error</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Please enter a valid amount first.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <!-- Left Side -->
+      <div class="left-side" style="color:black;">
+        <h2>Welcome To VAT Calculator (UK)</h2>
+        <p>This site was created to help users calculate VAT accurately, whether adding it to net amounts or subtracting
+          it from gross amounts. Unlike other tools, ours lets you adjust the VAT rate easily to suit your needs.</p>
+        <p>The UK’s standard VAT rate is currently 20%, a change made on 4th January 2011 from 17.5%. Previously, the
+          rate dropped to 15% on 1st December 2008 before rising again to 17.5% on 20th January 2010. Our calculator is
+          designed to simplify these calculations for both individuals and businesses.</p>
+      </div>
+
+      <!-- Right Side -->
+      <div class="right-side">
+        <h3>VAT Calculator</h3>
+        <form>
+          <div class="mb-3">
+            <label for="amount" class="form-label">Enter Amount (£):</label>
+            <input type="number" id="amount" class="form-control" placeholder="Enter amount" value="2">
+          </div>
+
+          <div class="mb-3">
+            <label for="vat-rate" class="form-label">Enter VAT Rate (%):</label>
+            <input type="number" id="vat-rate" class="form-control" value="20">
+          </div>
+
+          <div class="d-grid gap-2">
+            <button type="button" class="btn btn-success" id="add-vat">Add VAT</button>
+            <button type="button" class="btn btn-danger" id="remove-vat">Remove VAT</button>
+          </div>
+        </form>
+        <div id="result">Result: £2.00</div>
+      </div>
     </div>
+  </div>
 
-    <!-- Footer -->
-    <footer class="bg-black text-light text-center p-3 mt-5">
-        <p>&copy; 2024 UK VAT Calculator. All rights reserved.</p>
-        <a href="contact-us.html" class="text-light">Contact Us</a> | 
-        <a href="privacy-policy.html" class="text-light">Privacy Policy</a>
-    </footer>
+  <!-- Modal for Error -->
+  <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="errorModalLabel">Error</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Please enter a valid amount first.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Additional Content Section -->
+  <div class="contain content-section">
+    <h1>What is a VAT Calculator?</h1>
+    <section>
+      <p>
+        A VAT Calculator determines VAT (Value Added Tax). It is a simple tool that helps calculate VAT,
+        whether included in the gross amount or net amount. Most goods and services sold in the UK are taxable,
+        and VAT has been a major tax source since its introduction in 1973.
+      </p>
+      <p>
+        These calculators save time and benefit both individuals and organizations. Let's explore VAT requirements
+        and its functionality.
+      </p>
+    </section>
 
-    <!-- Bootstrap JS and Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        const amountInput = document.getElementById('amount');
+    <section>
+      <h2>General VAT Rates in the UK</h2>
+      <ul>
+        <li><strong>Standard Rate (20%):</strong> Applies to retail items and professional services.</li>
+        <li><strong>Reduced Rate (5%):</strong> Applies to selected goods like children's car seats and energy-saving
+          materials.</li>
+        <li><strong>Zero Rate (0%):</strong> Applies to basic goods such as food, books, and newspapers.</li>
+        <li><strong>Exempt Transactions:</strong> Includes financial services, healthcare, and postage stamps.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>How to Use a VAT Calculator</h2>
+      <ol>
+        <li>Enter the Amount: Input the net or gross amount in pounds.</li>
+        <li>Choose the VAT Rate: Select the appropriate rate (20%, 5%, or 0%).</li>
+        <li>Select Calculation Type:
+          <ul>
+            <li>Add VAT: Calculates the gross amount by including VAT.</li>
+            <li>Remove VAT: Calculates the net amount after removing VAT.</li>
+          </ul>
+        </li>
+        <li>See Results: View the VAT amount, net amount, and gross amount.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Manual VAT Calculations</h2>
+      <h3>Adding VAT</h3>
+      <p>Gross Amount = Net Amount × (1 + VAT Rate)</p>
+      <p>Example: Net Amount = £100, VAT Rate = 20% → Gross Amount = £100 × 1.2 = £120</p>
+
+      <h3>Removing VAT</h3>
+      <p>Net Amount = Gross Amount ÷ (1 + VAT Rate)</p>
+      <p>Example: Gross Amount = £120, VAT Rate = 20% → Net Amount = £120 ÷ 1.2 = £100</p>
+
+      <h3>Calculating VAT Amount Only</h3>
+      <p>VAT Amount = Net Amount × VAT Rate</p>
+      <p>Example: Net Amount = £100, VAT Rate = 20% → VAT Amount = £100 × 0.2 = £20</p>
+    </section>
+
+    <section>
+      <h2>Purpose of a VAT Calculator</h2>
+      <ul>
+        <li>Generate accurate invoices.</li>
+        <li>Validate net or gross amounts quickly.</li>
+        <li>Assist businesses in VAT returns.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Who Requires a VAT Calculator?</h2>
+      <ul>
+        <li>Consumers: To determine VAT charges.</li>
+        <li>Businesses: To ensure VAT compliance.</li>
+        <li>Freelancers: For easy invoice calculations.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Key VAT Rates on Goods and Services</h2>
+      <ul>
+        <li><strong>Standard Rate (20%):</strong> Electronics, clothing, retail goods.</li>
+        <li><strong>Reduced Rate (5%):</strong> Children's car seats, energy-efficient materials.</li>
+        <li><strong>Zero Rate (0%):</strong> Basic food items, books, newspapers.</li>
+        <li><strong>Exempt:</strong> Healthcare, financial services, postage stamps.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Key Considerations for VAT</h2>
+      <ul>
+        <li>Businesses must register if turnover exceeds £85,000.</li>
+        <li>Filing VAT Returns: Mandatory for registered businesses, submitted to HMRC.</li>
+        <li>Penalties: Non-compliance results in fines.</li>
+        <li>Voluntary Registration: Smaller businesses may register to claim back VAT.</li>
+      </ul>
+      <h2>Conclusion</h2>
+      <p>A VAT calculator is very useful while doing transactions that are subjected to VAT whether for personal or
+        business purposes. It makes the operations effortless, accurate, and hardly time-consuming. You will find a VAT
+        Calculator useful because it serves any kind of VAT problem you have. For instance, this calculator assists you
+        in financial transactions whether you want to add VAT or take it off.</p>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-black text-light text-center p-3 mt-5">
+    <p>&copy; 2024 UK VAT Calculator. All rights reserved.</p>
+    <a href="contact-us.html" class="text-light">Contact Us</a> |
+    <a href="privacy-policy.html" class="text-light">Privacy Policy</a>
+  </footer>
+
+  <!-- Bootstrap JS and Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const amountInput = document.getElementById('amount');
         const vatRateInput = document.getElementById('vat-rate');
         const addVatButton = document.getElementById('add-vat');
         const removeVatButton = document.getElementById('remove-vat');
@@ -227,7 +363,7 @@
             const vat = amount - originalAmount;
             resultDiv.textContent = `Result: £${originalAmount.toFixed(2)} (excluding £${vat.toFixed(2)} VAT)`;
         });
-    </script>
+  </script>
 </body>
 
 </html>
